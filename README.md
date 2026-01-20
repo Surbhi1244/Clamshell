@@ -2,10 +2,6 @@
 
 A frontend web project inspired by **Clamshell Learning**, created to showcase a clean, modern, and user-friendly learning platform interface using core frontend technologies.
 
-This project follows professional repository standards similar to those used in real companies.
-
----
-
 ## 🌐 Project Overview
 
 The **Clamshell Learning Platform** is a frontend-only web application that represents how an online learning or training platform can look and function.
@@ -36,7 +32,4 @@ The main objective of this project is to practice:
 - **JavaScript (ES6)** – Interactivity  
 - **Git & GitHub** – Version control  
 
----
-
-## 📁 Project Structure
 
