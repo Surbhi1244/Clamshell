@@ -36,4 +36,10 @@ The main objective of this project is to practice:
 - **JavaScript (ES6)** – Interactivity  
 - **Git & GitHub** – Version control  
 
+## 📸 Screenshots
+
+![Login](assets/LoginPage.png)
+![ID](assets/IDAndPassword.png)
+![Dashboard](assets/Dashboard.png)
+
 
