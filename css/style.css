@@ -12,7 +12,14 @@ body {
 }
 
 .background {
-    background-image: url('../assets/Frame7.png');
+  background: linear-gradient(
+    to right,
+    #a7c7f9,
+    #5ec8f8,
+    #7ed7d0,
+    #e8efb0,
+    #ffb6b6,
+    #f6b1d8 );
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
