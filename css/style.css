@@ -446,3 +446,15 @@ body {
 .card.e:hover img {
   transform: scale(1.08);
 }
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.products li {
+  cursor: pointer;
+}
