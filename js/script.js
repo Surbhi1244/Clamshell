@@ -16,7 +16,7 @@ if (loginBtn) {
       return;
     }
 
-    // STEP 2: Validate
+    // STEP 2: Validate inputs
     const userId = document.getElementById("user-id").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -29,7 +29,6 @@ if (loginBtn) {
     window.location.href = "main-dashboard.html";
   });
 }
-
 
 /* ===============================
    SIDEBAR CONTENT SWITCHING
@@ -45,26 +44,39 @@ const pages = {
       <p>Select a module from the sidebar</p>
     </div>
   `,
-  language: `<h1>Language Select</h1><p>Select your preferred language.</p>`,
-  role: `<h1>Role Selection</h1><p>Select your role.</p>`,
-  attestation: `<h1>Attestation</h1><p>Please confirm your details.</p>`
+  language: `
+    <h1>Language Select</h1>
+    <p>Select your preferred language.</p>
+  `,
+  role: `
+    <h1>Role Selection</h1>
+    <p>Select your role.</p>
+  `,
+  attestation: `
+    <h1>Attestation</h1>
+    <p>Please confirm your details.</p>
+  `
 };
 
-// default page
+// Default content load
 if (content) {
   content.innerHTML = pages.welcome;
 }
 
-// sidebar click
+// Sidebar item click handler
 items.forEach(item => {
   item.addEventListener("click", () => {
     const key = item.dataset.page;
+    
+    // Update active class on sidebar items
+    items.forEach(i => i.classList.remove("active"));
+    item.classList.add("active");
+
     if (content) {
       content.innerHTML = pages[key] || "<p>Page coming soon</p>";
     }
   });
 });
-
 
 /* ===============================
    CARD CLICK NAVIGATION
@@ -78,7 +90,6 @@ document.querySelectorAll(".card").forEach(card => {
     }
   });
 });
-
 
 /* ===============================
    DEBUG (optional)
