@@ -11,10 +11,4 @@ document.getElementById('login-btn').addEventListener('click', function () {
   }
 });
 
-document.querySelectorAll(".card-img img").forEach(img => {
-  img.onclick = () => {
-    imageModal.style.display = "flex";
-    modalImage.src = img.src;
-  };
-});
 
