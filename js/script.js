@@ -11,4 +11,10 @@ document.getElementById('login-btn').addEventListener('click', function () {
   }
 });
 
+document.querySelectorAll(".clickable").forEach(text => {
+  text.addEventListener("click", () => {
+    window.location.href = "details.html";
+  });
+});
+
 
