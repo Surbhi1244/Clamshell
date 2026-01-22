@@ -447,14 +447,11 @@ body {
   transform: scale(1.08);
 }
 
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
 .products li {
   cursor: pointer;
+}
+
+.products li:hover {
+  color: #000;
+  font-weight: 600;
 }
