@@ -248,6 +248,7 @@ body {
   background: #fff;
   height: auto;
   min-height: 260px;
+  cursor: pointer;
 }
 
 .card h4 {
