@@ -302,33 +302,82 @@ body {
 
 .card.yellow { 
   background: linear-gradient(120deg,#F7F7F7, #858585 ); 
+  overflow: hidden;
+  border-radius: 16px;
 }
+
+.card.yellow:hover img {
+  transform: scale(1.08);
+}
+
 .card.dark {   
-  background: linear-gradient(120deg,#F7F7F7, #858585 ); 
+  background: linear-gradient(120deg,#F7F7F7, #858585 );
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.dark:hover img {
+  transform: scale(1.08);
 }
 
 .card.gray {   
-  background: linear-gradient(120deg,#F7F7F7, #858585 ); 
+  background: linear-gradient(120deg,#F7F7F7, #858585 );
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.gray:hover img {
+  transform: scale(1.08);
 }
 
 .card.green {  
-  background: linear-gradient(120deg,#F7F7F7, #858585 );  
+  background: linear-gradient(120deg,#F7F7F7, #858585 ); 
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.green:hover img {
+  transform: scale(1.08);
 }
 
 .card.blue {  
-  background: linear-gradient(120deg,#F7F7F7, #858585 );  
+  background: linear-gradient(120deg,#F7F7F7, #858585 );
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.blue:hover img {
+  transform: scale(1.08);
 }
 
 .card.q { 
-  background: linear-gradient(120deg,#F7F7F7, #858585 );  
+  background: linear-gradient(120deg,#F7F7F7, #858585 ); 
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.q:hover img {
+  transform: scale(1.08);
 }
 
 .card.W {
-  background: linear-gradient(120deg,#F7F7F7, #858585 );  
+  background: linear-gradient(120deg,#F7F7F7, #858585 );
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.W:hover img {
+  transform: scale(1.08);
 }
 
 .card.e {
-  background: linear-gradient(120deg,#F7F7F7, #858585 );  
+  background: linear-gradient(120deg,#F7F7F7, #858585 ); 
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.card.e:hover img {
+  transform: scale(1.08);
 }
 
 .card img {
