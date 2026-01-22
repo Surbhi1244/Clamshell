@@ -1,13 +1,23 @@
-document.getElementById('login-btn').addEventListener('click', function () {
-  const btn = document.getElementsByClassName("login-button")[0];
+document.getElementById("login-btn").addEventListener("click", function () {
+  const btn = this;
 
-  if (btn.innerText === "Continue") {
-    // Continue click hone par redirect
-    window.location.href = "main-dashboard.html";
-  } else {
-    // Pehli click par UI change
+  const userId = document.getElementById("user-id").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  // ❌ agar empty hai
+  if (userId === "" || password === "") {
+    alert("Please enter User ID and Password");
+    return;
+  }
+
+  // ✅ pehla valid click
+  if (btn.innerText === "Login") {
     btn.innerText = "Continue";
-    document.getElementsByClassName("login-form-hidden")[0].style.display = "block";
+    document.querySelector(".login-form-hidden").style.display = "block";
+  }
+  // ✅ dusra click
+  else {
+    window.location.href = "main-dashboard.html";
   }
 });
 
