@@ -11,14 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const btn = this;
       const formBox = document.querySelector(".login-form-hidden");
 
-      // STEP 1: Show form
+      // Step 1: Show login form
       if (btn.innerText === "Login") {
         formBox.style.display = "block";
         btn.innerText = "Continue";
         return;
       }
 
-      // STEP 2: Validate inputs
+      // Step 2: Validate inputs
       const userId = document.getElementById("user-id")?.value.trim();
       const password = document.getElementById("password")?.value.trim();
 
@@ -27,13 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // STEP 3: Redirect
+      // Step 3: Redirect
       window.location.href = "main-dashboard.html";
     });
   }
 
   /* ===============================
-     SIDEBAR CONTENT SWITCHING
+     SIDEBAR + CONTENT AREA
   ================================ */
 
   const items = document.querySelectorAll(".products li");
@@ -43,9 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
     welcome: `
       <section class="welcome-card">
         <h1>Welcome Nancy!</h1>
-        <p>Select a module from the sidebar</p>
+        <p>Select a module from the sidebar or view all classes.</p>
 
-        <div class="cards">
+        <button id="show-classes-btn" class="primary-btn">
+          View All Classes
+        </button>
+
+        <div class="cards hidden">
           <div class="card" data-link="language.html">Language</div>
           <div class="card" data-link="role.html">Role</div>
           <div class="card" data-link="attestation.html">Attestation</div>
@@ -77,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     content.innerHTML = pages.welcome;
   }
 
-  // Sidebar click
+  // Sidebar click handling
   items.forEach(item => {
     item.addEventListener("click", () => {
       const key = item.dataset.page;
@@ -92,21 +96,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ===============================
-     CARD CLICK (EVENT DELEGATION)
+     BUTTON + CARD CLICK (DELEGATION)
   ================================ */
 
   document.body.addEventListener("click", (e) => {
+
+    // Show / Hide classes
+    if (e.target.id === "show-classes-btn") {
+      const cards = document.querySelector(".cards");
+      if (!cards) return;
+
+      cards.classList.toggle("hidden");
+      e.target.innerText = cards.classList.contains("hidden")
+        ? "View All Classes"
+        : "Hide Classes";
+    }
+
+    // Card navigation
     const card = e.target.closest(".card");
     if (card && card.dataset.link) {
       window.location.href = card.dataset.link;
     }
+
   });
 
-  /* ===============================
-     DEBUG
-  ================================ */
-  // console.log("JS loaded successfully");
-
 });
-
 
