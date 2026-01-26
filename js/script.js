@@ -86,7 +86,8 @@ function showWelcomeSelect() {
     </section>
   `;
 
-  if (mainCards) mainCards.style.display = "none";
+  if (mainCards) mainCards.style.display = "grid";
+  if (quickLinks) quickLinks.style.display = "none";
 }
 
 function showSingleCardPage(title) {
@@ -105,6 +106,7 @@ function showSingleCardPage(title) {
   `;
 
   if (mainCards) mainCards.style.display = "none";
+  if (quickLinks) quickLinks.style.display = "none";
 }
 
 /* =====================================================
