@@ -86,7 +86,7 @@ function showWelcomeSelect() {
     </section>
   `;
 
-  if (mainCards) mainCards.style.display = "grid";
+  if (mainCards) mainCards.style.display = "none";
   if (quickLinks) quickLinks.style.display = "none";
 }
 
