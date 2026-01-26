@@ -179,11 +179,11 @@ body {
 
 /* WELCOME CARD */
 .welcome-card {
-   height: 242px;
-  background: linear-gradient(90deg,#4facfe,#7bdcb5,#fddc7a,#ff8aa1);
-  padding: 16px;
-  border-radius: 14px;
-  color: #fff;
+   min-height: 200px;
+   background: linear-gradient(90deg,#4facfe,#7bdcb5,#fddc7a,#ff8aa1);
+   padding: 20px;
+   border-radius: 14px;
+   color: #fff;
 }
 
 .welcome-card h1 {
@@ -194,11 +194,11 @@ body {
   padding-bottom: 26px;
 }
 
-.tags {
-  padding-bottom: 40px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-  gap: 10px;
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
 }
 
 .tags span {
@@ -452,14 +452,6 @@ body {
   cursor: pointer;
   padding: 8px 10px;
   border-radius: 6px;
-}
-
-#content-area {
-  background: #fff;
-  padding: 20px;
-  min-height: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* Hide extra white container look */
