@@ -462,3 +462,32 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Hide extra white container look */
+#content-area{
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Welcome card spacing fix */
+.welcome-card{
+  margin-bottom: 20px;
+}
+
+/* Quick links row inside welcome */
+.quick-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:20px;
+}
+
+.quick-links span{
+  padding:6px 14px;
+  border-radius:20px;
+  background: rgba(255,255,255,0.25);
+  color:white;
+  font-size:12px;
+}
+
+
