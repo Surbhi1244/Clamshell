@@ -11,12 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formBox = document.querySelector(".login-form-hidden");
 
+      // STEP 1
       if (this.innerText === "Login") {
         formBox.style.display = "block";
         this.innerText = "Continue";
         return;
       }
 
+      // STEP 2
       const userId = document.getElementById("user-id")?.value.trim();
       const password = document.getElementById("password")?.value.trim();
 
@@ -25,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // STEP 3
       window.location.href = "main-dashboard.html";
     });
   }
@@ -57,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <h1>Welcome Nancy!</h1>
 
         <div class="tags">
+
           <div class="t1">
             <span>Storyline</span>
             <span>HTML</span>
@@ -71,14 +75,26 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>SL Source</span>
             <span>SL Link</span>
           </div>
+
         </div>
       </section>
     `;
 
-    if (cardsSection) cards cardsSection.style.display = "grid";
+    if (cardsSection) cardsSection.style.display = "grid";
   }
 
-  function showSingleCard(title) {
+  function showWelcomeSelect() {
+
+    contentArea.innerHTML = `
+      <section class="welcome-card">
+        <h1>Welcome Select</h1>
+      </section>
+    `;
+
+    if (cardsSection) cardsSection.style.display = "none";
+  }
+
+  function simplePage(title) {
 
     contentArea.innerHTML = `
       <section class="welcome-card">
@@ -103,23 +119,23 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.add("active");
 
       if (page === "welcome") {
-        showSingleCard("Welcome Select");
+        showWelcomeSelect();
       }
 
       else if (page === "language") {
-        showSingleCard("Language Select");
+        simplePage("Language Select");
       }
 
       else if (page === "role") {
-        showSingleCard("Role Selection");
+        simplePage("Role Selection");
       }
 
       else if (page === "attestation") {
-        showSingleCard("Attestation");
+        simplePage("Attestation");
       }
 
       else {
-        showSingleCard("Coming Soon");
+        simplePage("Coming Soon");
       }
 
     });
