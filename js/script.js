@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ===============================
-     LOGIN PAGE
-  ================================ */
+  /* =====================================================
+      LOGIN PAGE LOGIC
+  ===================================================== */
 
   const loginBtn = document.getElementById("login-btn");
 
@@ -11,12 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formBox = document.querySelector(".login-form-hidden");
 
+      // Step 1
       if (this.innerText === "Login") {
         formBox.style.display = "block";
         this.innerText = "Continue";
         return;
       }
 
+      // Step 2
       const userId = document.getElementById("user-id")?.value.trim();
       const password = document.getElementById("password")?.value.trim();
 
@@ -25,39 +27,45 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Step 3
       window.location.href = "main-dashboard.html";
     });
   }
 
-  /* ===============================
-     DASHBOARD VARIABLES
-  ================================ */
+  /* =====================================================
+      DASHBOARD ELEMENTS
+  ===================================================== */
 
   const items = document.querySelectorAll(".products li");
   const contentArea = document.getElementById("content-area");
-  const dashboardCards = document.querySelector(".cards");
+  const cardsSection = document.querySelector(".cards");
+  const tagsSection = document.querySelector(".tags");
   const allProductsBtn = document.getElementById("all-products-btn");
 
-  /* ===============================
-     DEFAULT PAGE → Welcome Nancy
-  ================================ */
+  /* =====================================================
+      DEFAULT DASHBOARD PAGE
+  ===================================================== */
 
   if (contentArea) {
+    showWelcomeNancy();
+  }
+
+  function showWelcomeNancy() {
+
     contentArea.innerHTML = `
       <section class="welcome-card">
         <h1>Welcome Nancy!</h1>
         <p>Select a module from the sidebar.</p>
       </section>
     `;
+
+    if (cardsSection) cardsSection.style.display = "grid";
+    if (tagsSection) tagsSection.style.display = "flex";
   }
 
-  if (dashboardCards) {
-    dashboardCards.style.display = "grid";
-  }
-
-  /* ===============================
-     SIDEBAR MENU CLICK
-  ================================ */
+  /* =====================================================
+      SIDEBAR MENU CLICK
+  ===================================================== */
 
   items.forEach(item => {
     item.addEventListener("click", () => {
@@ -67,67 +75,71 @@ document.addEventListener("DOMContentLoaded", () => {
       items.forEach(i => i.classList.remove("active"));
       item.classList.add("active");
 
-      // Hide cards for all sidebar pages
-      if (dashboardCards) {
-        dashboardCards.style.display = "none";
-      }
+      if (cardsSection) cardsSection.style.display = "none";
+      if (tagsSection) tagsSection.style.display = "none";
 
       if (page === "welcome") {
         contentArea.innerHTML = `
-          <h2>Welcome Select</h2>
-          <p>This is Welcome Select Page</p>
+          <section class="welcome-card">
+            <h1>Welcome Select</h1>
+            <p>Please choose a category</p>
+          </section>
         `;
       }
 
       else if (page === "language") {
-        contentArea.innerHTML = `<h2>Language Select</h2>`;
+        contentArea.innerHTML = `
+          <section class="welcome-card">
+            <h1>Language Select</h1>
+          </section>
+        `;
       }
 
       else if (page === "role") {
-        contentArea.innerHTML = `<h2>Role Selection</h2>`;
+        contentArea.innerHTML = `
+          <section class="welcome-card">
+            <h1>Role Selection</h1>
+          </section>
+        `;
       }
 
       else if (page === "attestation") {
-        contentArea.innerHTML = `<h2>Attestation</h2>`;
+        contentArea.innerHTML = `
+          <section class="welcome-card">
+            <h1>Attestation</h1>
+          </section>
+        `;
       }
 
       else {
-        contentArea.innerHTML = `<h2>Page Coming Soon...</h2>`;
+        contentArea.innerHTML = `
+          <section class="welcome-card">
+            <h1>Coming Soon</h1>
+          </section>
+        `;
       }
 
     });
   });
 
-  /* ===============================
-     ALL PRODUCTS CLICK → SHOW CARDS
-  ================================ */
+  /* =====================================================
+      ALL PRODUCTS CLICK
+  ===================================================== */
 
   if (allProductsBtn) {
     allProductsBtn.addEventListener("click", () => {
-
       items.forEach(i => i.classList.remove("active"));
-
-      contentArea.innerHTML = `
-        <section class="welcome-card">
-          <h1>Welcome Nancy!</h1>
-          <p>Select a module from the sidebar.</p>
-        </section>
-      `;
-
-      if (dashboardCards) {
-        dashboardCards.style.display = "grid";
-      }
-
+      showWelcomeNancy();
     });
   }
 
-  /* ===============================
-     CARD CLICK NAVIGATION
-  ================================ */
+  /* =====================================================
+      CARD CLICK
+  ===================================================== */
 
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
-      const link = card.getAttribute("data-link");
+      const link = card.dataset.link;
       if (link) {
         window.location.href = link;
       }
@@ -135,3 +147,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
