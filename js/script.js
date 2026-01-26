@@ -11,14 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const formBox = document.querySelector(".login-form-hidden");
 
-      // Step 1
       if (this.innerText === "Login") {
         formBox.style.display = "block";
         this.innerText = "Continue";
         return;
       }
 
-      // Step 2
       const userId = document.getElementById("user-id")?.value.trim();
       const password = document.getElementById("password")?.value.trim();
 
@@ -27,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Step 3
       window.location.href = "main-dashboard.html";
     });
   }
@@ -40,10 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentArea = document.getElementById("content-area");
   const cardsSection = document.querySelector(".cards");
   const tagsSection = document.querySelector(".tags");
+  const quickLinks = document.querySelector(".quick-links");
   const allProductsBtn = document.getElementById("all-products-btn");
 
   /* =====================================================
-      DEFAULT DASHBOARD PAGE
+      DEFAULT LOAD → WELCOME NANCY
   ===================================================== */
 
   if (contentArea) {
@@ -61,10 +59,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cardsSection) cardsSection.style.display = "grid";
     if (tagsSection) tagsSection.style.display = "flex";
+    if (quickLinks) quickLinks.style.display = "block";
+  }
+
+  function showWelcomeSelect() {
+
+    contentArea.innerHTML = `
+      <section class="welcome-card">
+        <h1>Welcome Select</h1>
+        <p>Please choose a category</p>
+      </section>
+    `;
+
+    if (cardsSection) cardsSection.style.display = "none";
+    if (tagsSection) tagsSection.style.display = "none";
+    if (quickLinks) quickLinks.style.display = "none";
+  }
+
+  function hideExtras() {
+    if (cardsSection) cardsSection.style.display = "none";
+    if (tagsSection) tagsSection.style.display = "none";
+    if (quickLinks) quickLinks.style.display = "none";
   }
 
   /* =====================================================
-      SIDEBAR MENU CLICK
+      SIDEBAR CLICK
   ===================================================== */
 
   items.forEach(item => {
@@ -75,19 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
       items.forEach(i => i.classList.remove("active"));
       item.classList.add("active");
 
-      if (cardsSection) cardsSection.style.display = "none";
-      if (tagsSection) tagsSection.style.display = "none";
-
       if (page === "welcome") {
-        contentArea.innerHTML = `
-          <section class="welcome-card">
-            <h1>Welcome Select</h1>
-            <p>Please choose a category</p>
-          </section>
-        `;
+        showWelcomeSelect();
       }
 
       else if (page === "language") {
+        hideExtras();
         contentArea.innerHTML = `
           <section class="welcome-card">
             <h1>Language Select</h1>
@@ -96,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       else if (page === "role") {
+        hideExtras();
         contentArea.innerHTML = `
           <section class="welcome-card">
             <h1>Role Selection</h1>
@@ -104,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       else if (page === "attestation") {
+        hideExtras();
         contentArea.innerHTML = `
           <section class="welcome-card">
             <h1>Attestation</h1>
@@ -112,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       else {
+        hideExtras();
         contentArea.innerHTML = `
           <section class="welcome-card">
             <h1>Coming Soon</h1>
@@ -123,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =====================================================
-      ALL PRODUCTS CLICK
+      ALL PRODUCTS BUTTON
   ===================================================== */
 
   if (allProductsBtn) {
@@ -134,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-      CARD CLICK
+      CARD CLICK → OPEN PAGE
   ===================================================== */
 
   document.querySelectorAll(".card").forEach(card => {
@@ -147,4 +162,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-
