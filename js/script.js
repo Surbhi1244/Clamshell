@@ -170,18 +170,6 @@ document.body.addEventListener("click", function(e){
   }
 
 });
-setTimeout(() => {
 
-  document.querySelectorAll(".quick-links, .quick-grid, .tabs, .recently-added, h3, h4").forEach(el => {
-    if (
-      el.innerText.includes("Quick") ||
-      el.innerText.includes("Recently") ||
-      el.innerText.includes("Added")
-    ) {
-      el.style.display = "none";
-    }
-  });
-
-}, 200);
 });
 
