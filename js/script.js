@@ -176,13 +176,12 @@ if (allProductsBtn) {
 /* =====================================================
     CARD CLICK
 ===================================================== */
-
 document.body.addEventListener("click", function(e){
 
   const card = e.target.closest(".card");
 
-  if(card){
-    alert(card.innerText + " clicked");
+  if(card && card.dataset.link){
+    window.location.href = card.dataset.link;
   }
 
 });
