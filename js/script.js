@@ -78,6 +78,7 @@ function showWelcomeNancy() {
   if (mainCards) mainCards.style.display = "grid";
 }
 
+
 function showWelcomeSelect() {
 
   contentArea.innerHTML = `
@@ -89,6 +90,8 @@ function showWelcomeSelect() {
   if (mainCards) mainCards.style.display = "none";
 }
 
+
+/* 🔥 SINGLE CARD PAGE (Role, Mars, Mondelez etc) */
 function showSingleCardPage(title) {
 
   contentArea.innerHTML = `
@@ -99,7 +102,7 @@ function showSingleCardPage(title) {
     <div class="cards">
       <div class="card pink">
         <h4>${title}</h4>
-        <p>This is ${title} main card</p>
+        <p>Open ${title}</p>
       </div>
     </div>
   `;
@@ -130,6 +133,14 @@ items.forEach(item => {
 
     else if (page === "role") {
       showSingleCardPage("Role Selection");
+    }
+
+    else if (page === "mars") {
+      showSingleCardPage("Mars");
+    }
+
+    else if (page === "mondelez") {
+      showSingleCardPage("Mondelez");
     }
 
     else if (page === "attestation") {
@@ -163,10 +174,11 @@ document.body.addEventListener("click", function(e){
 
   const card = e.target.closest(".card");
 
-  if(card && card.dataset.link){
-    window.location.href = card.dataset.link;
+  if(card){
+    alert(card.innerText + " clicked");
   }
 
 });
 
 });
+
