@@ -482,4 +482,13 @@ body {
   font-size:12px;
 }
 
+.company-card{
+  background:#e0e0e0;
+  transition:0.3s;
+}
+
+.company-card:hover{
+  background:#ff7aa2;
+}
+
 
