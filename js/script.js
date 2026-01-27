@@ -90,21 +90,21 @@ function showWelcomeSelect() {
 }
 
 /* =====================================================
-   MULTI CARD PAGE
+   MULTI CARD PAGE (Companies)
 ===================================================== */
 
-function showCompanyPage(title, count) {
+function showCompanyPage(title, cardsArray) {
 
   let cardsHTML = "";
 
-  for (let i = 1; i <= count; i++) {
+  cardsArray.forEach(name => {
     cardsHTML += `
       <div class="card pink">
-        <h4>${title} Card ${i}</h4>
-        <p>Open ${title}</p>
+        <h4>${name}</h4>
+        <p>Open Course</p>
       </div>
     `;
-  }
+  });
 
   contentArea.innerHTML = `
     <section class="welcome-card">
@@ -119,6 +119,10 @@ function showCompanyPage(title, count) {
   dashboardExtras.style.display = "none";
 }
 
+/* =====================================================
+   SINGLE PAGE
+===================================================== */
+
 function showSinglePage(title) {
 
   contentArea.innerHTML = `
@@ -129,7 +133,7 @@ function showSinglePage(title) {
     <div class="cards">
       <div class="card pink">
         <h4>${title}</h4>
-        <p>Open ${title}</p>
+        <p>Open</p>
       </div>
     </div>
   `;
@@ -156,11 +160,33 @@ items.forEach(item => {
 
     else if (page === "role") showSinglePage("Role Selection");
 
-    else if (page === "mars") showCompanyPage("Mars", 5);
+    else if (page === "mars") {
+      showCompanyPage("Mars", [
+        "Mars Course 1",
+        "Mars Course 2",
+        "Mars Course 3",
+        "Mars Course 4",
+        "Mars Course 5"
+      ]);
+    }
 
-    else if (page === "mondelez") showCompanyPage("Mondelez", 3);
+    else if (page === "mondelez") {
+      showCompanyPage("Mondelez", [
+        "Mondelez Course 1",
+        "Mondelez Course 2",
+        "Mondelez Course 3"
+      ]);
+    }
 
-    else if (page === "eisner") showCompanyPage("Eisner Amper", 5);
+    else if (page === "eisner") {
+      showCompanyPage("Eisner Amper", [
+        "Eisner Course 1",
+        "Eisner Course 2",
+        "Eisner Course 3",
+        "Eisner Course 4",
+        "Eisner Course 5"
+      ]);
+    }
 
     else if (page === "attestation") showSinglePage("Attestation");
 
@@ -180,15 +206,15 @@ allProductsBtn.addEventListener("click", () => {
 });
 
 /* =====================================================
-    CARD CLICK (DASHBOARD CARDS)
+    CARD CLICK
 ===================================================== */
 
 document.body.addEventListener("click", function(e){
 
   const card = e.target.closest(".card");
 
-  if(card && card.dataset.link){
-    window.location.href = card.dataset.link;
+  if(card){
+    alert(card.innerText + " clicked");
   }
 
 });
