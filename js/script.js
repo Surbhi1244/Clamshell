@@ -170,8 +170,8 @@ items.forEach(item => {
       ]);
     }
 
-    else if (page === "mondelez") {
-      showCompanyPage("Mondelez", [
+    else if (page === "friesland") {
+      showCompanyPage("Friesland Campina", [
         "Client Portal",
         "Individual Engagement Letter",
         "SAP"
