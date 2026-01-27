@@ -35,6 +35,7 @@ if (loginBtn) {
 
 const items = document.querySelectorAll(".sidebar-section li");
 const contentArea = document.getElementById("content-area");
+const mainCards = document.querySelector(".cards");
 const allProductsBtn = document.getElementById("all-products-btn");
 const dashboardExtras = document.getElementById("dashboard-extras");
 
@@ -42,7 +43,9 @@ const dashboardExtras = document.getElementById("dashboard-extras");
     LOAD DEFAULT
 ===================================================== */
 
-showWelcomeNancy();
+if (contentArea) {
+  showWelcomeNancy();
+}
 
 /* =====================================================
     FUNCTIONS
@@ -73,6 +76,7 @@ function showWelcomeNancy() {
     </section>
   `;
 
+  if (mainCards) mainCards.style.display = "grid";
   if (dashboardExtras) dashboardExtras.style.display = "block";
 }
 
@@ -87,23 +91,20 @@ function showWelcomeSelect() {
   if (dashboardExtras) dashboardExtras.style.display = "none";
 }
 
-/* 🔥 FIVE CARD PAGE */
+/* 🔥 SINGLE CARD PAGE */
 
-function showFiveCards(title) {
+function showSingleCardPage(title) {
 
   contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>${title}</h1>
     </section>
 
-    <div class="cards company-cards">
-
-      <div class="card gray">Card 1</div>
-      <div class="card gray">Card 2</div>
-      <div class="card gray">Card 3</div>
-      <div class="card gray">Card 4</div>
-      <div class="card gray">Card 5</div>
-
+    <div class="cards">
+      <div class="card pink">
+        <h4>${title}</h4>
+        <p>Open ${title}</p>
+      </div>
     </div>
   `;
 
@@ -128,31 +129,31 @@ items.forEach(item => {
     }
 
     else if (page === "language") {
-      showFiveCards("Language Select");
+      showSingleCardPage("Language Select");
     }
 
     else if (page === "role") {
-      showFiveCards("Role Selection");
+      showSingleCardPage("Role Selection");
     }
 
     else if (page === "mars") {
-      showFiveCards("Mars");
+      showSingleCardPage("Mars");
     }
 
     else if (page === "mondelez") {
-      showFiveCards("Mondelez");
+      showSingleCardPage("Mondelez");
     }
 
     else if (page === "eisner") {
-      showFiveCards("Eisner Amper");
+      showSingleCardPage("Eisner Amper");
     }
 
     else if (page === "attestation") {
-      showFiveCards("Attestation");
+      showSingleCardPage("Attestation");
     }
 
     else {
-      showFiveCards("Coming Soon");
+      showSingleCardPage("Coming Soon");
     }
 
   });
@@ -171,24 +172,6 @@ if (allProductsBtn) {
 
   });
 }
-
-/* =====================================================
-    HOVER EFFECT (GREY → PINK)
-===================================================== */
-
-document.addEventListener("mouseover", e => {
-  const card = e.target.closest(".company-cards .card");
-  if(card){
-    card.classList.add("pink");
-  }
-});
-
-document.addEventListener("mouseout", e => {
-  const card = e.target.closest(".company-cards .card");
-  if(card){
-    card.classList.remove("pink");
-  }
-});
 
 /* =====================================================
     CARD CLICK
