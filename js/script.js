@@ -37,6 +37,7 @@ const items = document.querySelectorAll(".sidebar-section li");
 const contentArea = document.getElementById("content-area");
 const mainCards = document.querySelector(".cards");
 const allProductsBtn = document.getElementById("all-products-btn");
+const dashboardExtras = document.getElementById("dashboard-extras");
 
 /* =====================================================
     LOAD DEFAULT
@@ -76,8 +77,8 @@ function showWelcomeNancy() {
   `;
 
   if (mainCards) mainCards.style.display = "grid";
+  if (dashboardExtras) dashboardExtras.style.display = "block";
 }
-
 
 function showWelcomeSelect() {
 
@@ -87,11 +88,11 @@ function showWelcomeSelect() {
     </section>
   `;
 
-  if (mainCards) mainCards.style.display = "none";
+  if (dashboardExtras) dashboardExtras.style.display = "none";
 }
 
+/* 🔥 SINGLE CARD PAGE */
 
-/* 🔥 SINGLE CARD PAGE (Role, Mars, Mondelez etc) */
 function showSingleCardPage(title) {
 
   contentArea.innerHTML = `
@@ -107,7 +108,7 @@ function showSingleCardPage(title) {
     </div>
   `;
 
-  if (mainCards) mainCards.style.display = "none";
+  if (dashboardExtras) dashboardExtras.style.display = "none";
 }
 
 /* =====================================================
@@ -118,7 +119,7 @@ items.forEach(item => {
 
   item.addEventListener("click", () => {
 
-    const page = item.dataset.page.toLowerCase();
+    const page = item.dataset.page?.toLowerCase();
 
     items.forEach(i => i.classList.remove("active"));
     item.classList.add("active");
@@ -143,6 +144,10 @@ items.forEach(item => {
       showSingleCardPage("Mondelez");
     }
 
+    else if (page === "eisner") {
+      showSingleCardPage("Eisner Amper");
+    }
+
     else if (page === "attestation") {
       showSingleCardPage("Attestation");
     }
@@ -161,8 +166,10 @@ items.forEach(item => {
 
 if (allProductsBtn) {
   allProductsBtn.addEventListener("click", () => {
+
     items.forEach(i => i.classList.remove("active"));
     showWelcomeNancy();
+
   });
 }
 
@@ -181,4 +188,3 @@ document.body.addEventListener("click", function(e){
 });
 
 });
-
