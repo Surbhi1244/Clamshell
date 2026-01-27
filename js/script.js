@@ -36,7 +36,6 @@ if (loginBtn) {
 const items = document.querySelectorAll(".products li");
 const contentArea = document.getElementById("content-area");
 const mainCards = document.querySelector(".cards");
-const quickLinks = document.querySelector(".quick-links");
 const allProductsBtn = document.getElementById("all-products-btn");
 
 /* =====================================================
@@ -77,7 +76,17 @@ function showWelcomeNancy() {
   `;
 
   if (mainCards) mainCards.style.display = "grid";
-  if (quickLinks) quickLinks.style.display = "block";
+}
+
+function showWelcomeSelect() {
+
+  contentArea.innerHTML = `
+    <section class="welcome-card">
+      <h1>Welcome Select</h1>
+    </section>
+  `;
+
+  if (mainCards) mainCards.style.display = "none";
 }
 
 function showSingleCardPage(title) {
@@ -86,11 +95,16 @@ function showSingleCardPage(title) {
     <section class="welcome-card">
       <h1>${title}</h1>
     </section>
+
+    <div class="cards">
+      <div class="card pink">
+        <h4>${title}</h4>
+        <p>This is ${title} main card</p>
+      </div>
+    </div>
   `;
 
-  // IMPORTANT: existing cards ko destroy nahi kar rahe
   if (mainCards) mainCards.style.display = "none";
-  if (quickLinks) quickLinks.style.display = "none";
 }
 
 /* =====================================================
@@ -98,6 +112,7 @@ function showSingleCardPage(title) {
 ===================================================== */
 
 items.forEach(item => {
+
   item.addEventListener("click", () => {
 
     const page = item.dataset.page;
@@ -106,22 +121,27 @@ items.forEach(item => {
     item.classList.add("active");
 
     if (page === "welcome") {
-      showWelcomeNancy();
+      showWelcomeSelect();
     }
+
     else if (page === "language") {
       showSingleCardPage("Language Select");
     }
+
     else if (page === "role") {
       showSingleCardPage("Role Selection");
     }
+
     else if (page === "attestation") {
       showSingleCardPage("Attestation");
     }
+
     else {
       showSingleCardPage("Coming Soon");
     }
 
   });
+
 });
 
 /* =====================================================
@@ -136,14 +156,17 @@ if (allProductsBtn) {
 }
 
 /* =====================================================
-    CARD CLICK (SAFE)
+    CARD CLICK
 ===================================================== */
 
 document.body.addEventListener("click", function(e){
+
   const card = e.target.closest(".card");
-  if (card && card.dataset.link) {
+
+  if(card && card.dataset.link){
     window.location.href = card.dataset.link;
   }
+
 });
 
 });
