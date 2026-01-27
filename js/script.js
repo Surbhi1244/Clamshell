@@ -33,7 +33,7 @@ if (loginBtn) {
     ELEMENTS
 ===================================================== */
 
-const items = document.querySelectorAll(".products li");
+const items = document.querySelectorAll(".sidebar-section li");
 const contentArea = document.getElementById("content-area");
 const mainCards = document.querySelector(".cards");
 const allProductsBtn = document.getElementById("all-products-btn");
