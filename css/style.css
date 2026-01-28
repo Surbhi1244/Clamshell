@@ -537,7 +537,7 @@ body {
 .company-udemy{
   background:#f5f5f5 !important;   /* normal color */
   padding:0;
-  overflow:hidden;
+  overflow:visible;
   transition:0.3s ease;
 }
 
