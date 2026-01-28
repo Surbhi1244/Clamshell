@@ -517,5 +517,10 @@ body {
   visibility: visible;
 }
 
+.hover-info h3,
+.hover-info p{
+  color:#222;
+}
+
 
 
