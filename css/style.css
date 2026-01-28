@@ -404,7 +404,7 @@ body {
   }
 
   .sidebar {
-    display: none;
+    display: block;
   }
 
   .cards,
