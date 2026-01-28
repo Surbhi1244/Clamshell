@@ -502,10 +502,13 @@ body {
   top: 0;
   left: 105%;
   width: 230px;
-  background: white;
+
+  background: rgba(0,0,0,0.85);   /* DARK BACKGROUND */
+  color: white;
+
   padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
 
   opacity: 0;
   visibility: hidden;
@@ -516,6 +519,11 @@ body {
 .card:hover .hover-info{
   opacity: 1;
   visibility: visible;
+}
+
+.hover-info h3,
+.hover-info p{
+  color: white;
 }
 
 
