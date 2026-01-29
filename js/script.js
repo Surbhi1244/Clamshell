@@ -42,7 +42,7 @@ const homeIcon = document.getElementById("home-icon");
 const searchInput = document.querySelector(".search");
 
 /* =====================================================
-    🔥 CENTRAL DATA (ADDED – SAME DATA, NOT DUPLICATE)
+    DATA (same data, ek jagah)
 ===================================================== */
 
 const companiesData = {
@@ -56,6 +56,14 @@ const companiesData = {
       "Commercial Infographic"
     ]
   },
+  eisner: {
+    title: "Eisner Amper",
+    courses: [
+      "Client Portal",
+      "Individual Engagement Letter",
+      "SAP"
+    ]
+  },
   friesland: {
     title: "Friesland Campina",
     courses: [
@@ -64,14 +72,6 @@ const companiesData = {
       "TM Transport Settlement",
       "Foreign Trade",
       "Gen Course"
-    ]
-  },
-  eisner: {
-    title: "Eisner Amper",
-    courses: [
-      "Client Portal",
-      "Individual Engagement Letter",
-      "SAP"
     ]
   }
 };
@@ -87,7 +87,6 @@ showWelcomeNancy();
 ===================================================== */
 
 function showWelcomeNancy() {
-
   contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>Welcome Nancy!</h1>
@@ -115,15 +114,6 @@ function showWelcomeNancy() {
   dashboardExtras.style.display = "block";
 }
 
-/* HOME ICON */
-
-if (homeIcon) {
-  homeIcon.addEventListener("click", () => {
-    items.forEach(i => i.classList.remove("active"));
-    showWelcomeNancy();
-  });
-}
-
 function showWelcomeSelect() {
   contentArea.innerHTML = `
     <section class="welcome-card">
@@ -134,7 +124,43 @@ function showWelcomeSelect() {
 }
 
 /* =====================================================
-   MULTI CARD PAGE (FULL ORIGINAL – NOTHING REMOVED)
+   LANGUAGE & ROLE (cards WAPAS)
+===================================================== */
+
+function showLanguageCards() {
+  contentArea.innerHTML = `
+    <section class="welcome-card">
+      <h1>Language Select</h1>
+    </section>
+
+    <div class="cards">
+      <div class="card pink"><h4>English</h4></div>
+      <div class="card blue"><h4>French</h4></div>
+      <div class="card green"><h4>German</h4></div>
+      <div class="card orange"><h4>Spanish</h4></div>
+    </div>
+  `;
+  dashboardExtras.style.display = "none";
+}
+
+function showRoleCards() {
+  contentArea.innerHTML = `
+    <section class="welcome-card">
+      <h1>Role Selection</h1>
+    </section>
+
+    <div class="cards">
+      <div class="card pink"><h4>Developer</h4></div>
+      <div class="card blue"><h4>Designer</h4></div>
+      <div class="card green"><h4>Manager</h4></div>
+      <div class="card orange"><h4>Analyst</h4></div>
+    </div>
+  `;
+  dashboardExtras.style.display = "none";
+}
+
+/* =====================================================
+   COMPANY PAGE
 ===================================================== */
 
 function showCompanyPage(title, cardsArray) {
@@ -143,35 +169,9 @@ function showCompanyPage(title, cardsArray) {
 
   cardsArray.forEach(name => {
     cardsHTML += `
-      <div class="card pink company-udemy">
-
-        <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
-
-        <div class="udemy-body">
-          <h4>${name}</h4>
-
-          <p class="udemy-author">By Clamshell Team</p>
-
-          <div class="udemy-rating">
-            ⭐ 4.7 <span>(410,182)</span>
-          </div>
-
-          <div class="udemy-price">
-            ₹599 <del>₹3,109</del>
-          </div>
-
-          <div class="udemy-badges">
-            <span class="premium">Premium</span>
-            <span class="best">Bestseller</span>
-          </div>
-        </div>
-
-        <div class="hover-info">
-          <h3>${name}</h3>
-          <p>Complete course with videos, examples and projects.</p>
-          <button>View Details</button>
-        </div>
-
+      <div class="card pink">
+        <h4>${name}</h4>
+        <p>By Clamshell Team</p>
       </div>
     `;
   });
@@ -190,20 +190,7 @@ function showCompanyPage(title, cardsArray) {
 }
 
 /* =====================================================
-   SINGLE PAGE
-===================================================== */
-
-function showSinglePage(title) {
-  contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>${title}</h1>
-    </section>
-  `;
-  dashboardExtras.style.display = "none";
-}
-
-/* =====================================================
-    SIDEBAR CLICK (USING SAME DATA)
+    SIDEBAR CLICK
 ===================================================== */
 
 items.forEach(item => {
@@ -214,77 +201,60 @@ items.forEach(item => {
     item.classList.add("active");
 
     if (page === "welcome") showWelcomeSelect();
-    else if (page === "language") showSinglePage("Language Select");
-    else if (page === "role") showSinglePage("Role Selection");
+    else if (page === "language") showLanguageCards();
+    else if (page === "role") showRoleCards();
     else if (companiesData[page]) {
       showCompanyPage(
         companiesData[page].title,
         companiesData[page].courses
       );
     }
-    else showSinglePage("Coming Soon");
+    else showWelcomeSelect();
   });
 });
+
+/* =====================================================
+    HOME ICON
+===================================================== */
+
+if (homeIcon) {
+  homeIcon.addEventListener("click", () => {
+    items.forEach(i => i.classList.remove("active"));
+    showWelcomeNancy();
+  });
+}
 
 /* =====================================================
     ALL PRODUCTS
 ===================================================== */
 
-allProductsBtn.addEventListener("click", () => {
-  items.forEach(i => i.classList.remove("active"));
-  showWelcomeNancy();
-});
+if (allProductsBtn) {
+  allProductsBtn.addEventListener("click", () => {
+    items.forEach(i => i.classList.remove("active"));
+    showWelcomeNancy();
+  });
+}
 
 /* =====================================================
-    CARD CLICK
-===================================================== */
-
-document.body.addEventListener("click", function(e){
-  const card = e.target.closest(".card");
-  if(card && card.dataset.link){
-    window.location.href = card.dataset.link;
-  }
-});
-
-/* =====================================================
-    🔍 GLOBAL SEARCH (HOME + ALL COMPANIES)
+    SEARCH (GLOBAL)
 ===================================================== */
 
 if (searchInput) {
-  searchInput.addEventListener("keyup", () => {
+  searchInput.addEventListener("keyup", function () {
 
-    const value = searchInput.value.toLowerCase();
+    const value = this.value.toLowerCase();
     const cards = document.querySelectorAll(".card");
-    let found = false;
 
     cards.forEach(card => {
-      const title = card.querySelector("h4")?.innerText.toLowerCase();
-      if (title && title.includes(value)) {
+      const title = card.querySelector("h4")?.innerText.toLowerCase() || "";
+
+      if (title.includes(value)) {
         card.style.display = "";
-        found = true;
       } else {
         card.style.display = "none";
       }
     });
-
-    if (!found && value.length > 0) {
-      for (let key in companiesData) {
-        const match = companiesData[key].courses.some(course =>
-          course.toLowerCase().includes(value)
-        );
-
-        if (match) {
-          showCompanyPage(
-            companiesData[key].title,
-            companiesData[key].courses
-          );
-          break;
-        }
-      }
-    }
   });
 }
 
 });
-
-
