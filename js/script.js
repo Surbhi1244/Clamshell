@@ -79,6 +79,17 @@ function showWelcomeNancy() {
   dashboardExtras.style.display = "block";
 }
 
+if (homeIcon) {
+  homeIcon.addEventListener("click", () => {
+
+    // sidebar ke active items hatao
+    items.forEach(i => i.classList.remove("active"));
+
+    // HOME PAGE LOAD
+    showWelcomeNancy();
+  });
+}
+
 function showWelcomeSelect() {
 
   contentArea.innerHTML = `
