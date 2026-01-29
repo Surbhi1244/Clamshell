@@ -133,6 +133,7 @@ body{
   display: flex;
   grid-template-columns: 280px 1fr;
   min-height: 100vh;
+  overflow: visible;
 }
 
 
@@ -616,6 +617,10 @@ body{
 .best{
   background:#eceb98;
   color:#3d3c0a;
+}
+
+.card:hover{
+  z-index: 100000;
 }
 
 
