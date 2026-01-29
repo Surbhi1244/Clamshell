@@ -697,6 +697,13 @@ body{
   background:linear-gradient(120deg,#a8e6cf,#dcedc1);
 }
 
+.udemy-rating,
+.udemy-price,
+.udemy-badges,
+.udemy-author {
+  display: none;
+}
+
 
 
 
