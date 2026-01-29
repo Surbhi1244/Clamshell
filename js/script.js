@@ -38,6 +38,7 @@ const contentArea = document.getElementById("content-area");
 const mainCards = document.querySelector(".cards");
 const allProductsBtn = document.getElementById("all-products-btn");
 const dashboardExtras = document.getElementById("dashboard-extras");
+const homeIcon = document.getElementById("home-icon");
 
 /* =====================================================
     LOAD DEFAULT
