@@ -77,6 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
       LOAD DEFAULT
   ===================================================== */
+function renderHomeCards() {
+  let cardsHTML = "";
+
+  HOME_CARDS.forEach(card => {
+    cardsHTML += `
+      <div class="card pink company-udemy">
+        <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
+        <div class="udemy-body">
+          <h4>${card}</h4>
+          <p class="udemy-author">Home</p>
+        </div>
+      </div>
+    `;
+  });
+
+  return `
+    <div class="cards">
+      ${cardsHTML}
+    </div>
+  `;
+}
 
   showWelcomeNancy();
 
@@ -107,6 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     </section>
+
+    ${renderHomeCards()}
   `;
 
     mainCards.style.display = "grid";
