@@ -25,14 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
   };
 
-  const HOME_CARDS = [
-    "Low Code / No Code",
-    "Drone",
-    "Networking",
-    "Artificial Intelligence",
-    "Intelligent Automation"
-  ];
-
   /* =====================================================
       LOGIN PAGE
   ===================================================== */
@@ -77,28 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
       LOAD DEFAULT
   ===================================================== */
-function renderHomeCards() {
-  let cardsHTML = "";
-
-  HOME_CARDS.forEach(card => {
-    cardsHTML += `
-      <div class="card pink company-udemy">
-        <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
-        <div class="udemy-body">
-          <h4>${card}</h4>
-          <p class="udemy-author">Home</p>
-        </div>
-      </div>
-    `;
-  });
-
-  return `
-    <div class="cards">
-      ${cardsHTML}
-    </div>
-  `;
-}
-
   showWelcomeNancy();
 
   /* =====================================================
@@ -128,8 +98,6 @@ function renderHomeCards() {
         </div>
       </div>
     </section>
-
-    ${renderHomeCards()}
   `;
 
     mainCards.style.display = "grid";
@@ -356,44 +324,33 @@ function renderHomeCards() {
       SEARCH FUNCTIONALITY
   ===================================================== */
 
-  if (searchInput) {
-    searchInput.addEventListener("keyup", function () {
+if (searchInput) {
+  searchInput.addEventListener("keyup", function () {
 
-      const value = this.value.toLowerCase().trim();
+    const value = this.value.toLowerCase().trim();
+    const cards = document.querySelectorAll(".card");
 
-      if (value === "") {
-        showWelcomeNancy();
-        return;
+    // agar search empty → sab wapas dikhao
+    if (value === "") {
+      cards.forEach(card => card.style.display = "");
+      return;
+    }
+
+    cards.forEach(card => {
+      const title = card.querySelector("h4");
+
+      if (!title) return;
+
+      const text = title.innerText.toLowerCase();
+
+      if (text.includes(value)) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
       }
-      let results = [];
-
-      /* HOME PAGE CARDS SEARCH */
-      HOME_CARDS.forEach(card => {
-        if (card.toLowerCase().includes(value)) {
-          results.push({
-            company: "HOME",
-            course: card
-          });
-        }
-      });
-
-      /* COMPANY COURSES SEARCH */
-      Object.keys(ALL_COURSES).forEach(company => {
-        ALL_COURSES[company].forEach(course => {
-          if (course.toLowerCase().includes(value)) {
-            results.push({
-              company: company.toUpperCase(),
-              course
-            });
-          }
-        });
-      });
-
-
-      showSearchResults(results);
     });
-  }
-
+  });
+}
 
   const profileIcon = document.getElementById("profile-icon");
   const profileMenu = document.getElementById("profile-menu");
