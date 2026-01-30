@@ -1,59 +1,85 @@
 document.addEventListener("DOMContentLoaded", () => {
+  /* =========================
+ GLOBAL COURSE DATA
+========================= */
 
-/* =====================================================
-    LOGIN PAGE
-===================================================== */
+  const ALL_COURSES = {
+    mars: [
+      "Prompt Engineering",
+      "AI at Mars",
+      "Asset Health Check",
+      "Supplier Trust Guide",
+      "Commercial Infographic"
+    ],
+    eisner: [
+      "Client Portal",
+      "Individual Engagement Letter",
+      "SAP"
+    ],
+    friesland: [
+      "TM Road Freight",
+      "TM Ocean Freight",
+      "TM Transport Settlement",
+      "Foreign Trade",
+      "Gen Course"
+    ]
+  };
 
-const loginBtn = document.getElementById("login-btn");
 
-if (loginBtn) {
-  loginBtn.addEventListener("click", function () {
+  /* =====================================================
+      LOGIN PAGE
+  ===================================================== */
 
-    const formBox = document.querySelector(".login-form-hidden");
+  const loginBtn = document.getElementById("login-btn");
 
-    if (this.innerText === "Login") {
-      formBox.style.display = "block";
-      this.innerText = "Continue";
-      return;
-    }
+  if (loginBtn) {
+    loginBtn.addEventListener("click", function () {
 
-    const userId = document.getElementById("user-id")?.value.trim();
-    const password = document.getElementById("password")?.value.trim();
+      const formBox = document.querySelector(".login-form-hidden");
 
-    if (!userId || !password) {
-      alert("Please enter User ID and Password");
-      return;
-    }
+      if (this.innerText === "Login") {
+        formBox.style.display = "block";
+        this.innerText = "Continue";
+        return;
+      }
 
-    window.location.href = "main-dashboard.html";
-  });
-}
+      const userId = document.getElementById("user-id")?.value.trim();
+      const password = document.getElementById("password")?.value.trim();
 
-/* =====================================================
-    ELEMENTS
-===================================================== */
+      if (!userId || !password) {
+        alert("Please enter User ID and Password");
+        return;
+      }
 
-const items = document.querySelectorAll(".sidebar-section li");
-const contentArea = document.getElementById("content-area");
-const mainCards = document.querySelector(".cards");
-const allProductsBtn = document.getElementById("all-products-btn");
-const dashboardExtras = document.getElementById("dashboard-extras");
-const homeIcon = document.getElementById("home-icon");
-const searchInput = document.querySelector(".search");
+      window.location.href = "main-dashboard.html";
+    });
+  }
 
-/* =====================================================
-    LOAD DEFAULT
-===================================================== */
+  /* =====================================================
+      ELEMENTS
+  ===================================================== */
 
-showWelcomeNancy();
+  const items = document.querySelectorAll(".sidebar-section li");
+  const contentArea = document.getElementById("content-area");
+  const mainCards = document.querySelector(".cards");
+  const allProductsBtn = document.getElementById("all-products-btn");
+  const dashboardExtras = document.getElementById("dashboard-extras");
+  const homeIcon = document.getElementById("home-icon");
+  const searchInput = document.querySelector(".search");
 
-/* =====================================================
-    FUNCTIONS
-===================================================== */
+  /* =====================================================
+      LOAD DEFAULT
+  ===================================================== */
 
-function showWelcomeNancy() {
+  showWelcomeNancy();
 
-  contentArea.innerHTML = `
+  /* =====================================================
+      FUNCTIONS
+  ===================================================== */
+
+  function showWelcomeNancy() {
+
+    contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>Welcome Nancy!</h1>
 
@@ -76,42 +102,79 @@ function showWelcomeNancy() {
     </section>
   `;
 
-  mainCards.style.display = "grid";
-  dashboardExtras.style.display = "block";
-}
+    mainCards.style.display = "grid";
+    dashboardExtras.style.display = "block";
+  }
 
-if (homeIcon) {
-  homeIcon.addEventListener("click", () => {
+  if (homeIcon) {
+    homeIcon.addEventListener("click", () => {
 
-    // sidebar ke active items hatao
-    items.forEach(i => i.classList.remove("active"));
+      // sidebar ke active items hatao
+      items.forEach(i => i.classList.remove("active"));
 
-    // HOME PAGE LOAD
-    showWelcomeNancy();
-  });
-}
+      // HOME PAGE LOAD
+      showWelcomeNancy();
+    });
+  }
 
-function showWelcomeSelect() {
+  function showWelcomeSelect() {
 
-  contentArea.innerHTML = `
+    contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>Welcome Select</h1>
     </section>
   `;
 
-  dashboardExtras.style.display = "none";
-}
+    dashboardExtras.style.display = "none";
+  }
 
-/* =====================================================
-   MULTI CARD PAGE (Companies)
-===================================================== */
+  /* =====================================================
+     MULTI CARD PAGE (Companies)
+  ===================================================== */
+  function showSearchResults(results) {
 
-function showCompanyPage(title, cardsArray) {
+    if (results.length === 0) {
+      contentArea.innerHTML = `
+      <section class="welcome-card">
+        <h1>No results found</h1>
+      </section>
+    `;
+      dashboardExtras.style.display = "none";
+      return;
+    }
 
-  let cardsHTML = "";
+    let cardsHTML = "";
 
-  cardsArray.forEach(name => {
-    cardsHTML += `
+    results.forEach(item => {
+      cardsHTML += `
+      <div class="card pink company-udemy">
+        <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
+        <div class="udemy-body">
+          <h4>${item.course}</h4>
+          <p class="udemy-author">${item.company}</p>
+        </div>
+      </div>
+    `;
+    });
+
+    contentArea.innerHTML = `
+    <section class="welcome-card">
+      <h1>Search Results</h1>
+    </section>
+    <div class="cards">
+      ${cardsHTML}
+    </div>
+  `;
+
+    dashboardExtras.style.display = "none";
+  }
+
+  function showCompanyPage(title, cardsArray) {
+
+    let cardsHTML = "";
+
+    cardsArray.forEach(name => {
+      cardsHTML += `
   <div class="card pink company-udemy">
 
     <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
@@ -144,9 +207,9 @@ function showCompanyPage(title, cardsArray) {
 
   </div>
 `;
-  });
+    });
 
-  contentArea.innerHTML = `
+    contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>${title}</h1>
     </section>
@@ -156,16 +219,16 @@ function showCompanyPage(title, cardsArray) {
     </div>
   `;
 
-  dashboardExtras.style.display = "none";
-}
+    dashboardExtras.style.display = "none";
+  }
 
-/* =====================================================
-   SINGLE PAGE
-===================================================== */
+  /* =====================================================
+     SINGLE PAGE
+  ===================================================== */
 
-function showSinglePage(title) {
+  function showSinglePage(title) {
 
-  contentArea.innerHTML = `
+    contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>${title}</h1>
     </section>
@@ -178,130 +241,140 @@ function showSinglePage(title) {
     </div>
   `;
 
-  dashboardExtras.style.display = "none";
-}
-
-/* =====================================================
-    SIDEBAR CLICK
-===================================================== */
-
-items.forEach(item => {
-
-  item.addEventListener("click", () => {
-
-    const page = item.dataset.page.toLowerCase();
-
-    items.forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
-
-    if (page === "welcome") showWelcomeSelect();
-
-    else if (page === "language") showSinglePage("Language Select");
-
-    else if (page === "role") showSinglePage("Role Selection");
-
-    else if (page === "mars") {
-      showCompanyPage("Mars", [
-        "Prompt Engineering",
-        "AI at Mars",
-        "Asset Health Check",
-        "Supplier Trust Guide",
-        "Commercial Infographic"
-      ]);
-    }
-
-    else if (page === "eisner") {
-      showCompanyPage("Eisner Amper", [
-        "Client Portal",
-        "Individual Engagement Letter",
-        "SAP"
-      ]);
-    }
-
-    else if (page === "friesland") {
-      showCompanyPage("Friesland Campina", [
-        "TM Road Freight",
-        "TM Ocean Freight",
-        "TM Transport Settlement",
-        "Foreign Trade",
-        "Gen Course"
-      ]);
-    }
-
-    else if (page === "attestation") showSinglePage("Attestation");
-
-    else showSinglePage("Coming Soon");
-
-  });
-
-});
-
-/* =====================================================
-    ALL PRODUCTS BUTTON
-===================================================== */
-
-allProductsBtn.addEventListener("click", () => {
-  items.forEach(i => i.classList.remove("active"));
-  showWelcomeNancy();
-});
-
-/* =====================================================
-    CARD CLICK
-===================================================== */
-
-document.body.addEventListener("click", function(e){
-
-  const card = e.target.closest(".card");
-
-  if(card && card.dataset.link){
-    window.location.href = card.dataset.link;
+    dashboardExtras.style.display = "none";
   }
 
-});
+  /* =====================================================
+      SIDEBAR CLICK
+  ===================================================== */
 
-/* =====================================================
-    SEARCH FUNCTIONALITY
-===================================================== */
+  items.forEach(item => {
 
-if (searchInput) {
-  searchInput.addEventListener("keyup", function () {
+    item.addEventListener("click", () => {
 
-    const value = this.value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
+      const page = item.dataset.page.toLowerCase();
 
-    cards.forEach(card => {
-      const title = card.querySelector("h4").innerText.toLowerCase();
+      items.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
 
-      if (title.includes(value)) {
-        card.style.display = "";
-      } else {
-        card.style.display = "none";
+      if (page === "welcome") showWelcomeSelect();
+
+      else if (page === "language") showSinglePage("Language Select");
+
+      else if (page === "role") showSinglePage("Role Selection");
+
+      else if (page === "mars") {
+        showCompanyPage("Mars", [
+          "Prompt Engineering",
+          "AI at Mars",
+          "Asset Health Check",
+          "Supplier Trust Guide",
+          "Commercial Infographic"
+        ]);
       }
+
+      else if (page === "eisner") {
+        showCompanyPage("Eisner Amper", [
+          "Client Portal",
+          "Individual Engagement Letter",
+          "SAP"
+        ]);
+      }
+
+      else if (page === "friesland") {
+        showCompanyPage("Friesland Campina", [
+          "TM Road Freight",
+          "TM Ocean Freight",
+          "TM Transport Settlement",
+          "Foreign Trade",
+          "Gen Course"
+        ]);
+      }
+
+      else if (page === "attestation") showSinglePage("Attestation");
+
+      else showSinglePage("Coming Soon");
+
     });
+
   });
-}
 
-const profileIcon = document.getElementById("profile-icon");
-const profileMenu = document.getElementById("profile-menu");
-const logoutBtn = document.getElementById("logout-btn");
+  /* =====================================================
+      ALL PRODUCTS BUTTON
+  ===================================================== */
 
-if (profileIcon) {
-  profileIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
-    profileMenu.classList.toggle("show");
+  allProductsBtn.addEventListener("click", () => {
+    items.forEach(i => i.classList.remove("active"));
+    showWelcomeNancy();
   });
-}
 
-// click outside → close menu
-document.addEventListener("click", () => {
-  profileMenu.classList.remove("show");
-});
+  /* =====================================================
+      CARD CLICK
+  ===================================================== */
 
-// logout
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    window.location.href = "login.html";
+  document.body.addEventListener("click", function (e) {
+
+    const card = e.target.closest(".card");
+
+    if (card && card.dataset.link) {
+      window.location.href = card.dataset.link;
+    }
+
   });
-}
+
+  /* =====================================================
+      SEARCH FUNCTIONALITY
+  ===================================================== */
+
+  if (searchInput) {
+    searchInput.addEventListener("keyup", function () {
+
+      const value = this.value.toLowerCase().trim();
+
+      if (value === "") {
+        showWelcomeNancy();
+        return;
+      }
+
+      let results = [];
+
+      Object.keys(ALL_COURSES).forEach(company => {
+        ALL_COURSES[company].forEach(course => {
+          if (course.toLowerCase().includes(value)) {
+            results.push({
+              company: company.toUpperCase(),
+              course
+            });
+          }
+        });
+      });
+
+      showSearchResults(results);
+    });
+  }
+
+
+  const profileIcon = document.getElementById("profile-icon");
+  const profileMenu = document.getElementById("profile-menu");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  if (profileIcon) {
+    profileIcon.addEventListener("click", (e) => {
+      e.stopPropagation();
+      profileMenu.classList.toggle("show");
+    });
+  }
+
+  // click outside → close menu
+  document.addEventListener("click", () => {
+    profileMenu.classList.remove("show");
+  });
+
+  // logout
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      window.location.href = "login.html";
+    });
+  }
 
 });
