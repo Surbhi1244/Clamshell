@@ -324,33 +324,61 @@ document.addEventListener("DOMContentLoaded", () => {
       SEARCH FUNCTIONALITY
   ===================================================== */
 
+/* =====================================================
+    SEARCH FUNCTIONALITY (GLOBAL)
+===================================================== */
+
 if (searchInput) {
   searchInput.addEventListener("keyup", function () {
 
     const value = this.value.toLowerCase().trim();
-    const cards = document.querySelectorAll(".card");
 
-    // agar search empty → sab wapas dikhao
+    // empty search → home page wapas
     if (value === "") {
-      cards.forEach(card => card.style.display = "");
+      showWelcomeNancy();
       return;
     }
 
-    cards.forEach(card => {
-      const title = card.querySelector("h4");
+    let results = [];
 
-      if (!title) return;
+    /* ======================
+       HOME PAGE CARDS
+    ====================== */
+    const HOME_CARDS = [
+      "Low Code / No Code",
+      "Drone",
+      "Networking",
+      "Artificial Intelligence",
+      "Intelligent Automation"
+    ];
 
-      const text = title.innerText.toLowerCase();
-
-      if (text.includes(value)) {
-        card.style.display = "";
-      } else {
-        card.style.display = "none";
+    HOME_CARDS.forEach(card => {
+      if (card.toLowerCase().includes(value)) {
+        results.push({
+          company: "HOME",
+          course: card
+        });
       }
     });
+
+    /* ======================
+       COMPANY COURSES
+    ====================== */
+    Object.keys(ALL_COURSES).forEach(company => {
+      ALL_COURSES[company].forEach(course => {
+        if (course.toLowerCase().includes(value)) {
+          results.push({
+            company: company.toUpperCase(),
+            course
+          });
+        }
+      });
+    });
+
+    showSearchResults(results);
   });
 }
+
 
   const profileIcon = document.getElementById("profile-icon");
   const profileMenu = document.getElementById("profile-menu");
