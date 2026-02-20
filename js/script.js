@@ -67,12 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
       mars: [
         "Prompt Engineering",
         "AI at Mars",
-        "Asset Health Check",
+        {name: "Asset Health Check", link: "https://360.articulate.com/review/content/96e2cbca-e70a-49fb-8c73-ae9339a7dd57/review" },
         "Supplier Trust Guide",
         "Commercial Infographic"
       ],
       eisner: [
-        { name: "Client Portal", link: https://360.articulate.com/review/content/c9bd69f1-c69b-4376-b17e-442ece43b04a/review },
+        { name: "Client Portal", link: "https://360.articulate.com/review/content/c9bd69f1-c69b-4376-b17e-442ece43b04a/review" },
         "Individual Engagement Letter",
         "SAP"
       ],
