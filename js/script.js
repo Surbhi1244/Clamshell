@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Commercial Infographic"
       ],
       eisner: [
-        "Client Portal",
+        { name: "Client Portal", link: https://360.articulate.com/review/content/c9bd69f1-c69b-4376-b17e-442ece43b04a/review },
         "Individual Engagement Letter",
         "SAP"
       ],
