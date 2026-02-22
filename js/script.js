@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const showLoginBtn = document.getElementById("show-login-btn");
   const loginBox = document.getElementById("login-box");
   const continueBtn = document.getElementById("continue-btn");
+  const errorDisplay = document.getElementById("error-message");
 
   if (loginBox) loginBox.style.display = "none";
 
