@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "main-dashboard.html";
     });
   }
+  
   window.handleGoogleSSO = function (response) {
-
     const payload = JSON.parse(atob(response.credential.split(".")[1]));
     const email = payload.email;
 
@@ -50,7 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // allowed login
+    localStorage.setItem("userEmail", email);
+    const name = email.split("@")[0];
+    localStorage.setItem("userName", name.charAt(0).toUpperCase() + name.slice(1));
+    
     window.location.href = "main-dashboard.html";
   };
 
@@ -101,48 +104,48 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =====================================================
         LOAD DEFAULT
     ===================================================== */
-    showWelcomeNancy();
+    showWelcomeUser();
 
     /* =====================================================
         FUNCTIONS
     ===================================================== */
 
-    function showWelcomeNancy() {
-
+    function showWelcomeUser() {
+      const userName = localStorage.getItem("userName") || "User";
+      
       contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>Welcome Nancy!</h1>
+        <section class="welcome-card">
+          <h1>Welcome ${userName}!</h1>
 
-      <div class="tags">
-        <div class="t1">
-          <span>Storyline</span>
-          <span>HTML</span>
-          <span>Articulate</span>
-          <span>Figma</span>
-          <span>SB Link</span>
-        </div>
+          <div class="tags">
+            <div class="t1">
+              <span>Storyline</span>
+              <span>HTML</span>
+              <span>Articulate</span>
+              <span>Figma</span>
+              <span>SB Link</span>
+            </div>
 
-        <div class="t2">
-          <span>VSB</span>
-          <span>PSD</span>
-          <span>SL Source</span>
-          <span>SL Link</span>
-        </div>
-      </div>
-    </section>
-  `;
+            <div class="t2">
+              <span>VSB</span>
+              <span>PSD</span>
+              <span>SL Source</span>
+              <span>SL Link</span>
+            </div>
+          </div>
+        </section>
+      `;
 
       if (mainCards) mainCards.style.display = "grid";
       if (dashboardExtras) dashboardExtras.style.display = "block";
     }
 
     function showWelcomeSelect() {
-
       contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>Welcome Select</h1>
-    </section>
-  `;
+        <section class="welcome-card">
+          <h1>Welcome Select</h1>
+        </section>
+      `;
 
       if (dashboardExtras) dashboardExtras.style.display = "none";
     }
@@ -154,10 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (results.length === 0) {
         contentArea.innerHTML = `
-      <section class="welcome-card">
-        <h1>No results found</h1>
-      </section>
-    `;
+          <section class="welcome-card">
+            <h1>No results found</h1>
+          </section>
+        `;
         if (dashboardExtras) dashboardExtras.style.display = "none";
         return;
       }
@@ -166,24 +169,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       results.forEach(item => {
         cardsHTML += `
-      <div class="card pink company-udemy">
-        <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
-        <div class="udemy-body">
-          <h4>${item.course}</h4>
-          <p class="udemy-author">${item.company}</p>
-        </div>
-      </div>
-    `;
+          <div class="card pink company-udemy">
+            <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
+            <div class="udemy-body">
+              <h4>${item.course}</h4>
+              <p class="udemy-author">${item.company}</p>
+            </div>
+          </div>
+        `;
       });
 
       contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>Search Results</h1>
-    </section>
-    <div class="cards">
-      ${cardsHTML}
-    </div>
-  `;
+        <section class="welcome-card">
+          <h1>Search Results</h1>
+        </section>
+        <div class="cards">
+          ${cardsHTML}
+        </div>
+      `;
 
       if (dashboardExtras) dashboardExtras.style.display = "none";
     }
@@ -233,17 +236,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function showSinglePage(title) {
 
       contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>${title}</h1>
-    </section>
+        <section class="welcome-card">
+          <h1>${title}</h1>
+        </section>
 
-    <div class="cards">
-      <div class="card pink">
-        <h4>${title}</h4>
-        <p>Open</p>
-      </div>
-    </div>
-  `;
+        <div class="cards">
+          <div class="card pink">
+            <h4>${title}</h4>
+            <p>Open</p>
+          </div>
+        </div>
+      `;
 
       if (dashboardExtras) dashboardExtras.style.display = "none";
     }
@@ -259,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
         items.forEach(i => i.classList.remove("active"));
 
         // HOME PAGE LOAD
-        showWelcomeNancy();
+        showWelcomeUser();
       });
     }
 
@@ -305,7 +308,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (allProductsBtn) {
       allProductsBtn.addEventListener("click", () => {
         items.forEach(i => i.classList.remove("active"));
-        showWelcomeNancy();
+        showWelcomeUser();
       });
     }
 
@@ -334,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // empty search → home page wapas
         if (value === "") {
-          showWelcomeNancy();
+          showWelcomeUser();
           return;
         }
 
@@ -368,7 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (course.toLowerCase().includes(value)) {
               results.push({
                 company: company.toUpperCase(),
-                course
+                course: typeof course === "string" ? course : course.name
               });
             }
           });
@@ -385,6 +388,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileIcon = document.getElementById("profile-icon");
     const profileMenu = document.getElementById("profile-menu");
     const logoutBtn = document.getElementById("logout-btn");
+    const profileNameDisplay = document.getElementById("profile-name");
+
+    // Profile में email show करें
+    if (profileNameDisplay) {
+      const userEmail = localStorage.getItem("userEmail") || "user@clamshelllearning.com";
+      profileNameDisplay.textContent = userEmail;
+    }
 
     if (profileIcon) {
       profileIcon.addEventListener("click", (e) => {
@@ -400,6 +410,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userName");
         window.location.href = "index.html";
       });
     }
