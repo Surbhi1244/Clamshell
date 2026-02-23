@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
       eisner: [
         { name: "Client Portal", link: "https://360.articulate.com/review/content/c9bd69f1-c69b-4376-b17e-442ece43b04a/review" },
         { name: "Engagement Letter Essentials", link: "https://360.articulate.com/review/content/a9fcc163-5062-4d39-9509-10e76464598c/review" },
-        "SAP"
+        { name: "SAP" , link: "https://360.articulate.com/review/content/ea237926-3e70-4bb9-bc28-83236db8dcbc/review" }
       ],
       friesland: [
         "TM Road Freight",
