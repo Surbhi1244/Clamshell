@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "main-dashboard.html";
     });
   }
-  
+
   window.handleGoogleSSO = function (response) {
     const payload = JSON.parse(atob(response.credential.split(".")[1]));
     const email = payload.email;
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("userEmail", email);
     const name = email.split("@")[0];
     localStorage.setItem("userName", name.charAt(0).toUpperCase() + name.slice(1));
-    
+
     window.location.href = "main-dashboard.html";
   };
 
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mars: [
         "Prompt Engineering",
         "AI at Mars",
-        {name: "Asset Health Check", link: "https://360.articulate.com/review/content/96e2cbca-e70a-49fb-8c73-ae9339a7dd57/review" },
+        { name: "Asset Health Check", link: "https://360.articulate.com/review/content/96e2cbca-e70a-49fb-8c73-ae9339a7dd57/review" },
         "Supplier Trust Guide",
         "Commercial Infographic"
       ],
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showWelcomeUser() {
       const userName = localStorage.getItem("userName") || "User";
-      
+
       contentArea.innerHTML = `
         <section class="welcome-card">
           <h1>Welcome ${userName}!</h1>
@@ -391,9 +391,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileNameDisplay = document.getElementById("profile-name");
 
     // Profile में email show करें
+    // Profile me username aur email set karo
     if (profileNameDisplay) {
+
       const userEmail = localStorage.getItem("userEmail") || "user@clamshelllearning.com";
-      profileNameDisplay.textContent = userEmail;
+      const userName = userEmail.split("@")[0];
+
+      // Username wali jagah → sirf name
+      profileNameDisplay.textContent =
+        userName.charAt(0).toUpperCase() + userName.slice(1);
+
+      // Email wali jagah → full email
+      const emailDisplay = document.getElementById("profile-email");
+      if (emailDisplay) {
+        emailDisplay.textContent = userEmail;
+      }
     }
 
     if (profileIcon) {
