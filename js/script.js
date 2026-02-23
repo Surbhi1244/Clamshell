@@ -192,30 +192,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let cardsHTML = "";
 
-      cardsArray.forEach(name => {
+      cardsArray.forEach(course => {
+
+        const courseName = typeof course === "string"
+          ? course
+          : course.name;
+
+        const courseLink = typeof course === "string"
+          ? null
+          : course.link;
+
         cardsHTML += `
-      <div class="card pink company-udemy">
-
-        <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
-
-        <div class="udemy-body">
-          <h4>${name}</h4>
-          <p class="udemy-author">By ${title}</p>
-        </div>
-
-      </div>
-    `;
+          <div class="card pink company-udemy"
+               ${courseLink ? `data-link="${courseLink}"` : ""}>
+            <img src="assets/Screenshot 2024-08-09 at 3.50.33 AM 1.png">
+            <div class="udemy-body">
+              <h4>${courseName}</h4>
+              <p class="udemy-author">By ${title}</p>
+            </div>
+          </div>
+        `;
       });
 
       contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>${title}</h1>
-    </section>
-
-    <div class="cards">
-      ${cardsHTML}
-    </div>
-  `;
+        <section class="welcome-card">
+          <h1>${title}</h1>
+        </section>
+        <div class="cards">
+          ${cardsHTML}
+        </div>
+      `;
 
       if (dashboardExtras) dashboardExtras.style.display = "none";
     }
@@ -398,4 +404,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }    // <- if(content-area) close
-}); 
+});
