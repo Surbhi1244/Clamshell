@@ -1063,3 +1063,10 @@ body{
     #ffb6b6,
     #f6b1d8 );
 }
+
+.error-msg {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: left;
+}
