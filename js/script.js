@@ -30,12 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       localStorage.setItem("userEmail", userId);
-      localStorage.setItem("userName", userId);  // ✅ पूरा EMAIL store
+      const name = userId.split("@")[0];
+      localStorage.setItem("userName", name.charAt(0).toUpperCase() + name.slice(1));
       window.location.href = "main-dashboard.html";
     });
   }
-  
   window.handleGoogleSSO = function (response) {
+
     const payload = JSON.parse(atob(response.credential.split(".")[1]));
     const email = payload.email;
 
@@ -49,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    localStorage.setItem("userEmail", email);
-    localStorage.setItem("userName", email);  // ✅ पूरा EMAIL store
-    
+    // allowed login
     window.location.href = "main-dashboard.html";
   };
 
@@ -102,43 +101,17 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =====================================================
         LOAD DEFAULT
     ===================================================== */
-    showWelcomeUser();  // ✅ Nancy हटाया
+    showWelcomeNancy();
 
     /* =====================================================
         FUNCTIONS
     ===================================================== */
 
-    function showWelcomeNancy() {  // पुराना रखा है backup के लिए
+    function showWelcomeNancy() {
+
       contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>Welcome Nancy!</h1>
-      <div class="tags">
-        <div class="t1">
-          <span>Storyline</span>
-          <span>HTML</span>
-          <span>Articulate</span>
-          <span>Figma</span>
-          <span>SB Link</span>
-        </div>
-        <div class="t2">
-          <span>VSB</span>
-          <span>PSD</span>
-          <span>SL Source</span>
-          <span>SL Link</span>
-        </div>
-      </div>
-    </section>
-  `;
-      if (mainCards) mainCards.style.display = "grid";
-      if (dashboardExtras) dashboardExtras.style.display = "block";
-    }
-
-    function showWelcomeUser() {  // ✅ नया function EMAIL के लिए
-      const userName = localStorage.getItem("userName") || "User";
-      
-      contentArea.innerHTML = `
-    <section class="welcome-card">
-      <h1>Welcome ${userName}!</h1>  <!-- यहाँ email show होगा -->
 
       <div class="tags">
         <div class="t1">
@@ -164,11 +137,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showWelcomeSelect() {
+
       contentArea.innerHTML = `
     <section class="welcome-card">
       <h1>Welcome Select</h1>
     </section>
   `;
+
       if (dashboardExtras) dashboardExtras.style.display = "none";
     }
 
@@ -279,8 +254,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (homeIcon) {
       homeIcon.addEventListener("click", () => {
+
+        // sidebar ke active items hatao
         items.forEach(i => i.classList.remove("active"));
-        showWelcomeUser();  // ✅ showWelcomeNancy() हटाया
+
+        // HOME PAGE LOAD
+        showWelcomeNancy();
       });
     }
 
@@ -326,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (allProductsBtn) {
       allProductsBtn.addEventListener("click", () => {
         items.forEach(i => i.classList.remove("active"));
-        showWelcomeUser();  // ✅ showWelcomeNancy() हटाया
+        showWelcomeNancy();
       });
     }
 
@@ -353,13 +332,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const value = this.value.toLowerCase().trim();
 
+        // empty search → home page wapas
         if (value === "") {
-          showWelcomeUser();  // ✅ showWelcomeNancy() हटाया
+          showWelcomeNancy();
           return;
         }
 
         let results = [];
 
+        /* ======================
+           HOME PAGE CARDS
+        ====================== */
         const HOME_CARDS = [
           "Low Code / No Code",
           "Drone",
@@ -377,6 +360,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
+        /* ======================
+           COMPANY COURSES
+        ====================== */
         Object.keys(ALL_COURSES).forEach(company => {
           ALL_COURSES[company].forEach(course => {
             if (course.toLowerCase().includes(value)) {
@@ -393,19 +379,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =====================================================
-        PROFILE MENU - EMAIL display
+        PROFILE MENU
     ===================================================== */
 
     const profileIcon = document.getElementById("profile-icon");
     const profileMenu = document.getElementById("profile-menu");
     const logoutBtn = document.getElementById("logout-btn");
-    const profileNameDisplay = document.getElementById("profile-name");
-
-    // Profile में email show करें
-    if (profileNameDisplay) {
-      const userEmail = localStorage.getItem("userEmail") || "user@clamshelllearning.com";
-      profileNameDisplay.textContent = userEmail;
-    }
 
     if (profileIcon) {
       profileIcon.addEventListener("click", (e) => {
@@ -414,16 +393,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // click outside → close menu
     document.addEventListener("click", () => {
       if (profileMenu) profileMenu.classList.remove("show");
     });
 
     if (logoutBtn) {
       logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("userEmail");
-        localStorage.removeItem("userName");
         window.location.href = "index.html";
       });
     }
-  }
+  }    // <- if(content-area) close
 });
