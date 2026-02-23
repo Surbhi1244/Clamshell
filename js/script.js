@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
       eisner: [
         { name: "Client Portal", link: "https://360.articulate.com/review/content/c9bd69f1-c69b-4376-b17e-442ece43b04a/review" },
-        { name: "Endividual Engagement Letter", link: "https://360.articulate.com/review/content/a9fcc163-5062-4d39-9509-10e76464598c/review" },
+        { name: "Engagement Letter Essentials", link: "https://360.articulate.com/review/content/a9fcc163-5062-4d39-9509-10e76464598c/review" },
         "SAP"
       ],
       friesland: [
